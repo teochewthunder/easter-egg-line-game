@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Easter Egg Line Game</title>
+
+		<style>
+			div {outline: 1px solid red;}
+
+			body
+			{
+				background: rgb(0, 0, 0);
+				color: rgb(255, 255, 255);
+			}
+
+			.container
+			{
+				width: 800px;
+				height: 700px;
+				margin: 0 auto 0 auto;
+			}
+
+			.top
+			{
+				width: 100%;
+				height: 100px;
+				float: left;
+			}
+
+			.scoreboard
+			{
+				width: 45%;
+				height: 100%;
+				float: left;
+			}
+
+			.movesboard
+			{
+				width: 45%;
+				height: 100%;
+				float: right;
+			}
+
+			.middle
+			{
+				width: 100%;
+				height: 500px;
+				float: left;
+			}
+
+			.grid
+			{
+				width: 500px;
+				height: 100%;
+				float: left;		
+			}
+
+			.rainbow
+			{
+				width: 280px;
+				height: 480px;
+				margin-top: 10px;
+				margin-right: 10px;
+				float: right;			
+			}
+
+			.stripe
+			{
+				width: 40px;
+				height: 100%;
+				float: left;
+			}
+
+			.stripe_fill
+			{
+				width: 100%;
+				height: 100%;
+			}
+
+			.col
+			{
+				width: 50px;
+				height: 100%;
+				float: left;
+			}
+
+			.square
+			{
+				width: 50px;
+				height: 50px;
+				float: left;
+			}
+
+			.bottom
+			{
+				width: 100%;
+				height: 100px;
+				float: left;
+			}
+
+			.red
+			{
+				color: rgb(200, 0, 0);
+				background-color: rgb(200, 0, 0);
+			}
+
+			.orange
+			{
+				color: rgb(200, 100, 0);
+				background-color: rgb(200, 100, 0);
+			}
+
+			.yellow
+			{
+				color: rgb(200, 200, 0);
+				background-color: rgb(200, 200, 0);
+			}
+
+			.green
+			{
+				color: rgb(0, 200, 0);
+				background-color: rgb(0, 200, 0);
+			}
+
+			.blue
+			{
+				color: rgb(0, 0, 200);
+				background-color: rgb(0, 0, 200);
+			}
+
+			.indigo
+			{
+				color: rgb(100, 0, 100);
+				background-color: rgb(100, 0, 100);
+			}
+
+			.violet
+			{
+				color: rgb(200, 0, 200);
+				background-color: rgb(200, 0, 200);
+			}
+		</style>
+
+		<script>
+
+		</script>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="top">
+				<div class="scoreboard">
+					<b>Score</b>
+					<br />
+					<span class="score"></span>
+				</div>
+
+				<div class="movesboard">
+					<b>Moves Remaining</b>
+					<br />
+					<span class="moves"></span>
+				</div>
+			</div>
+
+			<div class="middle">
+				<div class="grid">
+
+				</div>
+
+				<div class="rainbow">
+					<div class="stripe"><div class="stripe_fill red"></div></div>
+					<div class="stripe"><div class="stripe_fill orange"></div></div>
+					<div class="stripe"><div class="stripe_fill yellow"></div></div>
+					<div class="stripe"><div class="stripe_fill green"></div></div>
+					<div class="stripe"><div class="stripe_fill blue"></div></div>
+					<div class="stripe"><div class="stripe_fill indigo"></div></div>
+					<div class="stripe"><div class="stripe_fill violet"></div></div>
+				</div>
+			</div>
+
+			<div class="bottom">
+
+			</div>
+		</div>
+	</body>
+</html>
