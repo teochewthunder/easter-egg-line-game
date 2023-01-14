@@ -4,12 +4,14 @@
 		<title>Easter Egg Line Game</title>
 
 		<style>
-			div {outline: 1px solid red;}
+			div {outline: 0px solid red;}
 
 			body
 			{
 				background: rgb(0, 0, 0);
 				color: rgb(255, 255, 255);
+				font-family: Verdana;
+				font-size: 15px;
 			}
 
 			.container
@@ -100,88 +102,205 @@
 				float: left;
 			}
 
+			.egg
+			{
+				width: 70%;
+				height: 90%;
+				border-radius: 50%/60% 60% 40% 40%;
+				overflow: hidden;
+				position: relative;
+			}
+
+			.egg div
+			{
+				position: absolute;
+			}
+
+			.egg .style1.div:nth-of-type(1)
+			{
+				width: 100%;
+				height: 5%;
+				margin-top: 5px;
+			}
+
+			.egg .style1 div:nth-of-type(2)
+			{
+				width: 100%;
+				height: 10%;
+				margin-top: 20px;
+			}
+
+			.egg .style1 div:nth-of-type(3)
+			{
+				width: 10%;
+				height: 10%;
+				margin-top: 30px;
+			}
+
+			.egg .style2 div:nth-of-type(1)
+			{
+				width: 5%;
+				height: 5%;
+				margin-top: 10px;
+				margin-left: 10px;
+				border-radius: 50%;
+			}
+
+			.egg .style2 div:nth-of-type(2)
+			{
+				width: 10%;
+				height: 10%;
+				margin-top: 20px;
+				margin-left: 10px;
+				border-radius: 50%;
+			}
+
+			.egg .style2 div:nth-of-type(3)
+			{
+				width: 100%;
+				height: 5%;
+				margin-top: 30px;
+				margin-left: 20px;
+				border-radius: 50%;
+			}
+
+			.egg.style3 div:nth-of-type(1)
+			{
+				width: 10px;
+				height: 10px;
+				margin-top: 10px;
+				margin-left: 5px;
+				transform: rotate(45deg);
+			}
+
+			.egg.style3 div:nth-of-type(2)
+			{
+				width: 12px;
+				height: 12px;
+				margin-top: 30px;
+				margin-left: 0px;
+				transform: rotate(45deg);
+			}
+
+			.egg.style3 div:nth-of-type(3)
+			{
+				width: 20px;
+				height: 20px;
+				margin-top: 20px;
+				margin-left: 20px;
+				transform: rotate(45deg);
+			}
+
 			.outline_red
 			{
-				border: 1px solid rgb(200, 0, 0);
-				background-color: rgba(200, 0, 0, 0.5);
+				border: 1px solid rgb(150, 0, 0);
+				background-color: rgba(150, 0, 0, 0.2);
+			}
+
+			.egg.red div
+			{
+				background-color: rgb(255, 0, 0);
 			}
 
 			.red
 			{
-				color: rgb(200, 0, 0);
-				background-color: rgb(200, 0, 0);
+				background-color: rgb(150, 0, 0);
 			}
 
 			.outline_orange
 			{
-				border: 1px solid rgb(200, 100, 0);
-				background-color: rgba(200, 100, 0, 0.5);
+				border: 1px solid rgb(150, 100, 0);
+				background-color: rgba(150, 100, 0, 0.2);
+			}
+
+			.egg.orange div
+			{
+				background-color: rgb(255, 200, 0);
 			}
 
 			.orange
 			{
-				color: rgb(200, 100, 0);
-				background-color: rgb(200, 100, 0);
+				background-color: rgb(150, 100, 0);
 			}
 
 			.outline_yellow
 			{
-				border: 1px solid rgb(200, 200, 0);
-				background-color: rgba(200, 200, 0, 0.5);
+				border: 1px solid rgb(150, 150, 0);
+				background-color: rgba(150, 150, 0, 0.2);
+			}
+
+			.egg.yellow div
+			{
+				background-color: rgb(255, 255, 100);
 			}
 
 			.yellow
 			{
-				color: rgb(200, 200, 0);
-				background-color: rgb(200, 200, 0);
+				background-color: rgb(150, 150, 0);
 			}
 
 			.outline_green
 			{
-				border: 1px solid rgb(0, 200, 0);
-				background-color: rgba(0, 200, 0, 0.5);
+				border: 1px solid rgb(0, 150, 0);
+				background-color: rgba(0, 150, 0, 0.2);
+			}
+
+			.egg.green div
+			{
+				background-color: rgb(0, 50, 0);
 			}
 
 			.green
 			{
-				color: rgb(0, 200, 0);
-				background-color: rgb(0, 200, 0);
+				background-color: rgb(0, 150, 0);
 			}
 
 			.outline_blue
 			{
-				border: 1px solid rgb(0, 0, 200);
-				background-color: rgba(0, 0, 200, 0.5);
+				border: 1px solid rgb(0, 0, 150);
+				background-color: rgba(0, 0, 150, 0.2);
+			}
+
+			.egg.blue div
+			{
+				background-color: rgb(0, 0, 50);
 			}
 
 			.blue
 			{
-				color: rgb(0, 0, 200);
-				background-color: rgb(0, 0, 200);
+				background-color: rgb(0, 0, 150);
 			}
 
 			.outline_indigo
 			{
 				border: 1px solid rgb(100, 0, 100);
-				background-color: rgba(100, 0, 100, 0.5);
+				background-color: rgba(100, 0, 100, 0.2);
+			}
+
+			.egg.indigo div
+			{
+				background-color: rgb(5o, 0, 50);
 			}
 
 			.indigo
 			{
-				color: rgb(100, 0, 100);
 				background-color: rgb(100, 0, 100);
 			}
 
 			.outline_violet
 			{
-				border: 1px solid rgb(200, 0, 200);
-				background-color: rgba(200, 0, 200, 0.5);
+				border: 1px solid rgb(150, 0, 150);
+				background-color: rgba(150, 0, 150, 0.2);
+			}
+
+			.egg.violet div
+			{
+				background-color: rgb(255, 100, 255);
 			}
 
 			.violet
 			{
-				color: rgb(200, 0, 200);
-				background-color: rgb(200, 0, 200);
+				background-color: rgb(150, 0, 150);
 			}
 		</style>
 	</head>
@@ -198,7 +317,7 @@
 				<div class="movesboard">
 					<b>Moves Remaining</b>
 					<br />
-					<span class="moves">{{ remainingMoves }}</span>
+					<span class="moves">{{ remainingMoves }} / {{ moves }}</span>
 				</div>
 			</div>
 
@@ -206,19 +325,23 @@
 				<div class="grid">
 					<div class="col" v-for="col in grid">
 						<div class="square" v-for="c in col">
-
+							<div class="egg style3 yellow">
+								<div>&nbsp;</div>
+								<div>&nbsp;</div>
+								<div>&nbsp;</div>
+							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="rainbow">
-					<div class="stripe outline_red"><div class="stripe_fill red" style="margin-top: 10px"></div></div>
-					<div class="stripe outline_orange"><div class="stripe_fill orange" style="margin-top: 10px"></div></div>
-					<div class="stripe outline_yellow"><div class="stripe_fill yellow" style="margin-top: 10px"></div></div>
-					<div class="stripe outline_green"><div class="stripe_fill green" style="margin-top: 10px"></div></div>
-					<div class="stripe outline_blue"><div class="stripe_fill blue" style="margin-top: 10px"></div></div>
-					<div class="stripe outline_indigo"><div class="stripe_fill indigo" style="margin-top: 10px"></div></div>
-					<div class="stripe outline_violet"><div class="stripe_fill violet" style="margin-top: 10px"></div></div>
+					<div class="stripe outline_red"><div class="stripe_fill red" v-bind:style=getMarginTop("red")></div></div>
+					<div class="stripe outline_orange"><div class="stripe_fill orange" v-bind:style=getMarginTop("orange")></div></div>
+					<div class="stripe outline_yellow"><div class="stripe_fill yellow" v-bind:style=getMarginTop("yellow")></div></div>
+					<div class="stripe outline_green"><div class="stripe_fill green" v-bind:style=getMarginTop("green")></div></div>
+					<div class="stripe outline_blue"><div class="stripe_fill blue" v-bind:style=getMarginTop("blue")></div></div>
+					<div class="stripe outline_indigo"><div class="stripe_fill indigo" v-bind:style=getMarginTop("indigo")></div></div>
+					<div class="stripe outline_violet"><div class="stripe_fill violet" v-bind:style=getMarginTop("violet")></div></div>
 				</div>
 			</div>
 
@@ -236,6 +359,8 @@
 					el: "#easterApp",
 					data:
 					{
+						started: false,
+						paused: false,
 						min: 0,
 						max: 100,
 						moves: 50,
@@ -251,9 +376,18 @@
 							["", "", "", "", "", "", "", "", "", ""],
 							["", "", "", "", "", "", "", "", "", ""],
 							["", "", "", "", "", "", "", "", "", ""],
-							["", "", "", "", "", "", "", "", "", ""],
+							["", "", "", "", "", "", "", "", "", ""]
 						],
 						selection: [],
+						rainbow: {
+							red: 0,
+							orange: 0,
+							yellow: 0,
+							green: 0,
+							blue: 0,
+							indigo: 0,
+							violet: 0
+						}
 					},
 					methods:
 					{
@@ -261,6 +395,11 @@
 						{
 
 						},
+						getMarginTop: function(color)
+						{
+							var percentage = 100 - this.rainbow[color];
+							return "margin-top:" + ((percentage / 100) * 480) + "px";
+						}
 					},
 					created: function()
 					{
