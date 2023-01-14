@@ -116,51 +116,51 @@
 				position: absolute;
 			}
 
-			.egg .style1.div:nth-of-type(1)
+			.egg.style1 div:nth-of-type(1)
 			{
 				width: 100%;
-				height: 5%;
+				height: 3px;
 				margin-top: 5px;
 			}
 
-			.egg .style1 div:nth-of-type(2)
+			.egg.style1 div:nth-of-type(2)
 			{
 				width: 100%;
-				height: 10%;
+				height: 10px;
 				margin-top: 20px;
 			}
 
-			.egg .style1 div:nth-of-type(3)
+			.egg.style1 div:nth-of-type(3)
 			{
-				width: 10%;
-				height: 10%;
-				margin-top: 30px;
+				width: 100%;
+				height: 5px;
+				margin-top: 40px;
 			}
 
-			.egg .style2 div:nth-of-type(1)
+			.egg.style2 div:nth-of-type(1)
 			{
-				width: 5%;
-				height: 5%;
+				width: 15px;
+				height: 15px;
 				margin-top: 10px;
 				margin-left: 10px;
 				border-radius: 50%;
 			}
 
-			.egg .style2 div:nth-of-type(2)
+			.egg.style2 div:nth-of-type(2)
 			{
-				width: 10%;
-				height: 10%;
+				width: 10px;
+				height: 10px;
 				margin-top: 20px;
-				margin-left: 10px;
+				margin-left: 30px;
 				border-radius: 50%;
 			}
 
-			.egg .style2 div:nth-of-type(3)
+			.egg.style2 div:nth-of-type(3)
 			{
-				width: 100%;
-				height: 5%;
+				width: 5px;
+				height: 5px;
 				margin-top: 30px;
-				margin-left: 20px;
+				margin-left: 10px;
 				border-radius: 50%;
 			}
 
@@ -171,6 +171,7 @@
 				margin-top: 10px;
 				margin-left: 5px;
 				transform: rotate(45deg);
+				border-radius: 2px;
 			}
 
 			.egg.style3 div:nth-of-type(2)
@@ -180,15 +181,17 @@
 				margin-top: 30px;
 				margin-left: 0px;
 				transform: rotate(45deg);
+				border-radius: 2px;
 			}
 
 			.egg.style3 div:nth-of-type(3)
 			{
-				width: 20px;
-				height: 20px;
+				width: 8px;
+				height: 8px;
 				margin-top: 20px;
 				margin-left: 20px;
 				transform: rotate(45deg);
+				border-radius: 2px;
 			}
 
 			.outline_red
@@ -209,8 +212,8 @@
 
 			.outline_orange
 			{
-				border: 1px solid rgb(150, 100, 0);
-				background-color: rgba(150, 100, 0, 0.2);
+				border: 1px solid rgb(200, 150, 0);
+				background-color: rgba(200, 150, 0, 0.2);
 			}
 
 			.egg.orange div
@@ -225,8 +228,8 @@
 
 			.outline_yellow
 			{
-				border: 1px solid rgb(150, 150, 0);
-				background-color: rgba(150, 150, 0, 0.2);
+				border: 1px solid rgb(200, 200, 0);
+				background-color: rgba(200, 200, 0, 0.2);
 			}
 
 			.egg.yellow div
@@ -279,12 +282,12 @@
 
 			.egg.indigo div
 			{
-				background-color: rgb(5o, 0, 50);
+				background-color: rgb(100, 0, 100);
 			}
 
 			.indigo
 			{
-				background-color: rgb(100, 0, 100);
+				background-color: rgb(50, 0, 50);
 			}
 
 			.outline_violet
@@ -323,9 +326,9 @@
 
 			<div class="middle">
 				<div class="grid">
-					<div class="col" v-for="col in grid">
-						<div class="square" v-for="c in col">
-							<div class="egg style3 yellow">
+					<div class="col" v-for="(c, col) in grid">
+						<div class="square" v-for="(s, square) in col" v-on:click="selectSquare(c, s)">
+							<div class="egg style1 orange outline_orange">
 								<div>&nbsp;</div>
 								<div>&nbsp;</div>
 								<div>&nbsp;</div>
@@ -367,16 +370,16 @@
 						remainingMoves: 50,
 						score: 0,
 						grid: [
-							["", "", "", "", "", "", "", "", "", ""],
-							["", "", "", "", "", "", "", "", "", ""],
-							["", "", "", "", "", "", "", "", "", ""],
-							["", "", "", "", "", "", "", "", "", ""],
-							["", "", "", "", "", "", "", "", "", ""],
-							["", "", "", "", "", "", "", "", "", ""],
-							["", "", "", "", "", "", "", "", "", ""],
-							["", "", "", "", "", "", "", "", "", ""],
-							["", "", "", "", "", "", "", "", "", ""],
-							["", "", "", "", "", "", "", "", "", ""]
+							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}]
 						],
 						selection: [],
 						rainbow: {
@@ -399,6 +402,10 @@
 						{
 							var percentage = 100 - this.rainbow[color];
 							return "margin-top:" + ((percentage / 100) * 480) + "px";
+						},
+						selectSquare: function(c, s)
+						{
+							console.log(c, s);
 						}
 					},
 					created: function()
