@@ -1,2 +1,2 @@
 # Easter Egg Line Game (in progress)
-juery Easter Egg game
+VueJS Easter Egg game
