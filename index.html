@@ -45,8 +45,10 @@
 			.middle
 			{
 				width: 100%;
-				height: 500px;
 				float: left;
+				overflow: hidden;
+				webKit-transition: all 1s;
+				transition: all 1s;
 			}
 
 			.grid
@@ -385,7 +387,14 @@
 				</div>
 			</div>
 
-			<div class="middle">
+			<div class="middle" v-bind:style=getMiddleHeight("instructions")>
+				<h1>Instructions</h1>
+				<p>xxxyyyy</p>
+				<p>xxxyyyy</p>
+				<p>xxxyyyy</p>
+			</div>
+			
+			<div class="middle" v-bind:style=getMiddleHeight("game")>
 				<div class="grid">
 					<div class="col" v-for="(c, col) in grid">
 						<div class="square" v-for="(s, square) in col" v-on:click="selectSquare(c, s)">
@@ -458,11 +467,23 @@
 						reset: function()
 						{
 							this.fillMissingEggs();
+							this.started = false;
+
+							setTimeout(()=>{this.started = true;}, 1000);
 						},
 						getMarginTop: function(color)
 						{
 							var percentage = 100 - this.rainbow[color];
 							return "margin-top:" + ((percentage / 100) * 480) + "px";
+						},
+						getMiddleHeight: function(section)
+						{
+							var height = 0;
+
+							if (section == "game" && this.started) height = 500;
+							if (section == "instructions" && !this.started) height = 500;
+
+							return "height:" + height + "px";
 						},
 						getClass: function(c, s)
 						{
