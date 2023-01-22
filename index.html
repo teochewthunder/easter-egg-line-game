@@ -51,6 +51,17 @@
 				transition: all 1s;
 			}
 
+			.instructions
+			{
+				border-radius: 10px;
+				background-color: rgb(100, 100, 100);
+				width: 80%;
+				height: 80%;
+				padding: 10px;
+				margin: 5% auto 0 auto;
+				overflow: hidden;
+			}
+
 			.grid
 			{
 				width: 500px;
@@ -388,10 +399,12 @@
 			</div>
 
 			<div class="middle" v-bind:style=getMiddleHeight("instructions")>
-				<h1>Instructions</h1>
-				<p>xxxyyyy</p>
-				<p>xxxyyyy</p>
-				<p>xxxyyyy</p>
+				<div class="instructions">
+					<h1>Instructions</h1>
+					<p>xxxyyyy</p>
+					<p>xxxyyyy</p>
+					<p>xxxyyyy</p>
+				</div>
 			</div>
 			
 			<div class="middle" v-bind:style=getMiddleHeight("game")>
