@@ -106,6 +106,7 @@
 				width: 50px;
 				height: 50px;
 				float: left;
+				cursor: pointer;
 			}
 
 			.bottom
@@ -115,6 +116,20 @@
 				float: left;
 			}
 
+			.bottom button
+			{
+				width: 10em;
+				padding: 5px;
+				border-radius: 5px;
+				background-color: rgb(100, 100, 100);
+				margin: 0 auto 1em auto;
+			}
+
+			.bottom button:hover
+			{
+				background-color: rgb(200, 200, 200);
+			}
+
 			.egg
 			{
 				width: 70%;
@@ -122,6 +137,11 @@
 				border-radius: 50%/60% 60% 40% 40%;
 				overflow: hidden;
 				position: relative;
+			}
+
+			.egg:hover
+			{
+				outline: 2px solid rgb(255, 255, 255);
 			}
 
 			.egg:after
@@ -401,9 +421,11 @@
 			<div class="middle" v-bind:style=getMiddleHeight("instructions")>
 				<div class="instructions">
 					<h1>Instructions</h1>
-					<p>xxxyyyy</p>
-					<p>xxxyyyy</p>
-					<p>xxxyyyy</p>
+					<p>Your objective is to form a full rainbow in as few moves as possible.</p>
+					<p>Select a line (2 or more) of similarly colored eggs and click CONFIRM. This counts as one move, and will fill up the aprpropriate color on the meter.</p>
+					<p>A line can be any combination of horizontal or vertical lines.</p>
+					<p>The game ends when you run out of moves, or when a full rainbow is formed.</p>
+					<p>Extra points are earned from lines greater than 2 eggs.</p>
 				</div>
 			</div>
 			
@@ -432,7 +454,10 @@
 			</div>
 
 			<div class="bottom">
-
+				<br />
+				<button v-bind:style=getButtonVisibility("confirm")>CONFIRM</button>
+				<button v-on:click="setStarted(true)" v-bind:style=getButtonVisibility("start")>BEGIN</button>
+				<button v-on:click="setStarted(false)" v-bind:style=getButtonVisibility("stop")>STOP GAME</button>
 			</div>
 		</div>
 
@@ -447,7 +472,6 @@
 					{
 						started: false,
 						paused: false,
-						min: 0,
 						max: 100,
 						moves: 50,
 						remainingMoves: 50,
@@ -479,10 +503,31 @@
 					{
 						reset: function()
 						{
+							this.grid = [
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}]
+							];
 							this.fillMissingEggs();
-							this.started = false;
-
-							setTimeout(()=>{this.started = true;}, 1000);
+							this.remainingMoves = this.moves;
+							this.score = 0;
+							this.selection = [];
+							this.rainbow = {
+								red: 0,
+								orange: 0,
+								yellow: 0,
+								green: 0,
+								blue: 0,
+								indigo: 0,
+								violet: 0
+							};
 						},
 						getMarginTop: function(color)
 						{
@@ -498,9 +543,25 @@
 
 							return "height:" + height + "px";
 						},
+						getButtonVisibility: function(section)
+						{
+							var vis = "none";
+
+							if (section == "stop" && this.started) vis = "block";
+							if (section == "start" && !this.started) vis = "block";
+							if (section == "confirm" && this.selection.length >= 2) vis = "block";
+
+							return "display:" + vis;
+						},
 						getClass: function(c, s)
 						{
 							return "egg " + this.grid[c][s].style + " " + this.grid[c][s].color;
+						},
+						setStarted: function(started)
+						{
+							this.started = started;
+
+							if (started) this.reset();
 						},
 						selectSquare: function(c, s)
 						{
