@@ -139,7 +139,7 @@
 				position: relative;
 			}
 
-			.egg:hover
+			.egg:hover, .egg.outline
 			{
 				outline: 2px solid rgb(255, 255, 255);
 			}
@@ -433,7 +433,7 @@
 				<div class="grid">
 					<div class="col" v-for="(c, col) in grid">
 						<div class="square" v-for="(s, square) in col" v-on:click="selectSquare(c, s)">
-							<div v-bind:class="getClass(c, s)">
+							<div v-bind:class="getEggClass(c, s)">
 								<div>&nbsp;</div>
 								<div>&nbsp;</div>
 								<div>&nbsp;</div>
@@ -553,9 +553,33 @@
 
 							return "display:" + vis;
 						},
-						getClass: function(c, s)
+						getEggClass: function(c, s)
 						{
-							return "egg " + this.grid[c][s].style + " " + this.grid[c][s].color;
+							return "egg " + this.grid[c][s].style + " " + this.grid[c][s].color + " " + (this.isInSelection(c, s) ? "outline" : "");
+						},
+						isInSelection: function(c, s)
+						{
+							for (var i = 0; i < this.selection.length - 1; i++)
+							{
+								if (this.selection[i][0] == c && this.selection[i][1] == s) return true;
+							}
+
+							return false;
+						},
+						isLinkable: function(c, s)
+						{
+							if (this.selection.length == 0) return true;
+
+							var locationCompatible = false;
+							var colorCompatible = false;
+
+							lastNode = this.selection[this.selection.length - 1];
+							if (lastNode[0] == c || lastNode[1] == s) locationCompatible = true;
+							if (this.grid[lastNode[0]][lastNode[1]].color == this.grid[c][s].color) colorCompatible = true;
+
+							if (locationCompatible && colorCompatible) return true;
+
+							return false;
 						},
 						setStarted: function(started)
 						{
@@ -565,8 +589,23 @@
 						},
 						selectSquare: function(c, s)
 						{
-							console.log(c, s);
-						},
+							var insert = false;
+							var reset = false;
+
+							if (!this.isInSelection(c, s) && this.isLinkable(c, s)) 
+							{
+								insert = true;
+							}
+							else
+							{
+								reset = true;
+							}
+
+							if (insert) this.selection.push([c, s]);
+							if (reset) this.selection = [];
+
+							console.log(this.selection)
+					 	},
 						fillMissingEggs: function()
 						{
 							var arr = this.grid;
