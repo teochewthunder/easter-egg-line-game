@@ -139,7 +139,12 @@
 				position: relative;
 			}
 
-			.egg:hover, .egg.outline
+			.egg:hover
+			{
+				outline: 2px dotted rgb(255, 255, 255);
+			}
+
+			.egg.outline
 			{
 				outline: 2px solid rgb(255, 255, 255);
 			}
@@ -559,7 +564,7 @@
 						},
 						isInSelection: function(c, s)
 						{
-							for (var i = 0; i < this.selection.length - 1; i++)
+							for (var i = 0; i <= this.selection.length - 1; i++)
 							{
 								if (this.selection[i][0] == c && this.selection[i][1] == s) return true;
 							}
@@ -603,8 +608,6 @@
 
 							if (insert) this.selection.push([c, s]);
 							if (reset) this.selection = [];
-
-							console.log(this.selection)
 					 	},
 						fillMissingEggs: function()
 						{
