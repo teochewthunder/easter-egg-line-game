@@ -80,9 +80,9 @@
 
 			.stripe
 			{
-				width: 38px;
+				width: 18px;
 				height: 100%;
-				float: left;
+				float: right;
 				overflow: hidden;
 			}
 
@@ -137,6 +137,7 @@
 				border-radius: 50%/60% 60% 40% 40%;
 				overflow: hidden;
 				position: relative;
+				margin: 2px auto 0 auto;
 			}
 
 			.egg:hover
@@ -296,7 +297,7 @@
 			.outline_red
 			{
 				border: 1px solid rgb(150, 0, 0);
-				background-color: rgba(150, 0, 0, 0.5);
+				background-color: rgba(150, 0, 0, 0.2);
 			}
 
 			.egg.red div
@@ -312,7 +313,7 @@
 			.outline_orange
 			{
 				border: 1px solid rgb(200, 150, 0);
-				background-color: rgba(200, 150, 0, 0.5);
+				background-color: rgba(200, 150, 0, 0.2);
 			}
 
 			.egg.orange div
@@ -328,7 +329,7 @@
 			.outline_yellow
 			{
 				border: 1px solid rgb(200, 200, 0);
-				background-color: rgba(200, 200, 0, 0.5);
+				background-color: rgba(200, 200, 0, 0.2);
 			}
 
 			.egg.yellow div
@@ -344,7 +345,7 @@
 			.outline_green
 			{
 				border: 1px solid rgb(0, 150, 0);
-				background-color: rgba(0, 150, 0, 0.5);
+				background-color: rgba(0, 150, 0, 0.2);
 			}
 
 			.egg.green div
@@ -360,7 +361,7 @@
 			.outline_blue
 			{
 				border: 1px solid rgb(0, 0, 150);
-				background-color: rgba(0, 0, 150, 0.5);
+				background-color: rgba(0, 0, 150, 0.2);
 			}
 
 			.egg.blue div
@@ -376,7 +377,7 @@
 			.outline_indigo
 			{
 				border: 1px solid rgb(100, 0, 200);
-				background-color: rgba(100, 0, 200, 0.5);
+				background-color: rgba(100, 0, 200, 0.2);
 			}
 
 			.egg.indigo div
@@ -392,7 +393,7 @@
 			.outline_violet
 			{
 				border: 1px solid rgb(200, 50, 200);
-				background-color: rgba(200, 50, 200, 0.5);
+				background-color: rgba(200, 50, 200, 0.2);
 			}
 
 			.egg.violet div
@@ -411,12 +412,21 @@
 		<div class="container" id="easterApp">
 			<div class="top">
 				<div class="scoreboard">
-					<b>Score</b>
 					<br />
-					<span class="score"> {{ score }} </span>
+					<span class="red">E</span>
+					<span class="orange">A</span>
+					<span class="yellow">S</span>
+					<span class="green">T</span>
+					<span class="blue">E</span>
+					<span class="indigo">R</span>
+					<span class="violet">!</span>
 				</div>
 
 				<div class="movesboard">
+					<b>Score</b>
+					<br />
+					<span class="score"> {{ score }} </span>
+					<br /><br />
 					<b>Moves Remaining</b>
 					<br />
 					<span class="moves">{{ remainingMoves }} / {{ moves }}</span>
@@ -538,7 +548,7 @@
 						},
 						getMarginTop: function(color)
 						{
-							var percentage = 100 - this.rainbow[color];
+							var percentage = this.max - this.rainbow[color];
 							return "margin-top:" + ((percentage / 100) * 480) + "px";
 						},
 						getMiddleHeight: function(section)
@@ -566,7 +576,7 @@
 						},
 						isInSelection: function(c, s)
 						{
-							for (var i = 0; i <= this.selection.length - 1; i++)
+							for (var i = 0; i < this.selection.length; i++)
 							{
 								if (this.selection[i][0] == c && this.selection[i][1] == s) return true;
 							}
@@ -641,22 +651,23 @@
 						},
 						confirm: function()
 						{
-							this.moves--;
+							this.remainingMoves--;
 							this.score += ((this.selection.length - 2) * this.pointsPerEgg);
 
 							var arr = this.grid;
 
-							for (var i = 0; i <= this.selection.length - 1; i++) 
+							for (var i = 0; i < this.selection.length; i++) 
 							{
-								var color = this.selection = arr[this.selection[i][0]][this.selection[i][1]].color;
+								var color = arr[this.selection[i][0]][this.selection[i][1]].color;
 								this.rainbow[color] += 10;
+								if (this.rainbow[color] >= this.max) this.rainbow[color] = this.max;
 
 								arr[this.selection[i][0]][this.selection[i][1]].style = "";
 								arr[this.selection[i][0]][this.selection[i][1]].color = "";
 							}
 
-							this.grid = arr;
 							this.selection = [];
+							this.grid = arr;
 
 							//check for endgame
 						}
