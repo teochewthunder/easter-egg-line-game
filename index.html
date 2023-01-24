@@ -460,7 +460,7 @@
 
 			<div class="bottom">
 				<br />
-				<button v-bind:style=getButtonVisibility("confirm")>CONFIRM</button>
+				<button v-on:click="confirm()" v-bind:style=getButtonVisibility("confirm")>CONFIRM</button>
 				<button v-on:click="setStarted(true)" v-bind:style=getButtonVisibility("start")>BEGIN</button>
 				<button v-on:click="setStarted(false)" v-bind:style=getButtonVisibility("stop")>STOP GAME</button>
 			</div>
@@ -480,6 +480,8 @@
 						max: 100,
 						moves: 50,
 						remainingMoves: 50,
+						pointsPerEgg: 10,
+						pointsPerMove: 100,
 						score: 0,
 						grid: [
 							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
@@ -592,7 +594,7 @@
 
 							if (started) this.reset();
 						},
-						selectSquare: function(c, s)
+						selectSquare: function(c, s) //TODO: Amend to allow front insertion
 						{
 							var insert = false;
 							var reset = false;
@@ -636,6 +638,27 @@
 							var color = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"][randomIndex];
 
 							return {"style": style, "color": color};
+						},
+						confirm: function()
+						{
+							this.moves--;
+							this.score += ((this.selection.length - 2) * this.pointsPerEgg);
+
+							var arr = this.grid;
+
+							for (var i = 0; i <= this.selection.length - 1; i++) 
+							{
+								var color = this.selection = arr[this.selection[i][0]][this.selection[i][1]].color;
+								this.rainbow[color] += 10;
+
+								arr[this.selection[i][0]][this.selection[i][1]].style = "";
+								arr[this.selection[i][0]][this.selection[i][1]].color = "";
+							}
+
+							this.grid = arr;
+							this.selection = [];
+
+							//check for endgame
 						}
 					},
 					created: function()
