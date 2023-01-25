@@ -28,18 +28,19 @@
 				float: left;
 			}
 
-			.scoreboard
+			.title
 			{
-				width: 45%;
+				width: 55%;
 				height: 100%;
 				float: left;
 			}
 
-			.movesboard
+			.statboard
 			{
-				width: 45%;
+				width: 35%;
 				height: 100%;
 				float: right;
+				text-align: center;
 			}
 
 			.middle
@@ -405,24 +406,42 @@
 			{
 				background-color: rgb(200, 50, 200);
 			}
+
+			.letter
+			{
+				width: 50px;
+				height: 55px;
+				font-weight: bold;
+				font-size: 3em;
+				float: left;
+				text-align: center;
+				color: rgb(0, 0, 0);
+			}
 		</style>
 	</head>
 
 	<body>
 		<div class="container" id="easterApp">
 			<div class="top">
-				<div class="scoreboard">
-					<br />
-					<span class="red">E</span>
-					<span class="orange">A</span>
-					<span class="yellow">S</span>
-					<span class="green">T</span>
-					<span class="blue">E</span>
-					<span class="indigo">R</span>
-					<span class="violet">!</span>
+				<div class="title">
+					<div class="letter red">E</div>
+					<div class="letter orange">A</div>
+					<div class="letter yellow">S</div>
+					<div class="letter green">T</div>
+					<div class="letter blue">E</div>
+					<div class="letter indigo">R</div>
+					<div class="square">
+						<div class="egg style1 violet">
+							<div>&nbsp;</div>
+							<div>&nbsp;</div>
+							<div>&nbsp;</div>
+						</div>
+					</div>
+					<br style="clear:both" />
+					<h2><i>line game</i></h2>
 				</div>
 
-				<div class="movesboard">
+				<div class="statboard">
 					<b>Score</b>
 					<br />
 					<span class="score"> {{ score }} </span>
