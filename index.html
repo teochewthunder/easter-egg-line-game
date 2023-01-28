@@ -666,6 +666,7 @@
 								}
 							}
 
+							this.grid = [];
 							this.grid = arr;
 						},
 						getRandomPair: function()
@@ -709,9 +710,38 @@
 										arr[this.selection[i][0]][this.selection[i][1]].color = "";
 									}
 
+									for (var i = 0; i < arr.length; i++) 
+									{
+										for (var j = arr[i].length - 1; j > 0; j--) 
+										{
+											if (arr[i][j].style == "")
+											{
+												for (var k = j; k >= 0; k--) 
+												{
+													if (arr[i][k].style != "")
+													{
+														arr[i][j].style = arr[i][k].style;
+														arr[i][j].color = arr[i][k].color;
+														arr[i][k].style = "";
+														arr[i][k].color = "";
+														break;
+													}
+												}												
+											}
+										}
+									}
+
 									this.selection = [];
 									this.grid = arr;
-									this.paused = false;
+
+									setTimeout(
+										()=> 
+										{
+											this.fillMissingEggs();
+											this.paused = false;
+										},
+										500
+									);
 								},
 								1000
 							);
