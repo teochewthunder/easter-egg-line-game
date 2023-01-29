@@ -332,7 +332,7 @@
 
 			.orange
 			{
-				background-color: rgb(150, 100, 0);
+				background-color: rgb(200, 150, 0);
 			}
 
 			.outline_yellow
@@ -348,7 +348,7 @@
 
 			.yellow
 			{
-				background-color: rgb(150, 150, 0);
+				background-color: rgb(200, 200, 0);
 			}
 
 			.outline_green
@@ -703,7 +703,7 @@
 									for (var i = 0; i < this.selection.length; i++) 
 									{
 										var color = arr[this.selection[i][0]][this.selection[i][1]].color;
-										this.rainbow[color] += 10;
+										this.rainbow[color] += (i > 1 ? (i - 1) * (i - 1) * 10 : 0);
 										if (this.rainbow[color] >= this.max) this.rainbow[color] = this.max;
 
 										arr[this.selection[i][0]][this.selection[i][1]].style = "";
@@ -738,15 +738,35 @@
 										()=> 
 										{
 											this.fillMissingEggs();
-											this.paused = false;
+											this.paused = this.isEndGame();
 										},
 										500
 									);
 								},
 								1000
 							);
+						},
+						isEndGame: function()
+						{
+							var endGameScenario = false;
 
-							//check for endgame
+							if (this.remainingMoves == 0) endGameScenario = true;
+							if (this.rainbow.red == this.max && this.rainbow.orange == this.max && this.rainbow.yellow == this.max && this.rainbow.green == this.max && this.rainbow.blue == this.max && this.rainbow.indigo == this.max && this.rainbow.violet == this.max) endGameScenario = true;
+
+							//check for usable moves
+							if (this.remainingMoves > 0)
+							{
+
+							}
+
+							// end check
+
+							if (endGameScenario)
+							{
+								///tabulate scores
+							}
+
+							return endGameScenario;
 						}
 					},
 					created: function()
