@@ -547,19 +547,7 @@
 					{
 						reset: function()
 						{
-							this.grid = [
-								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}]
-							];
-							this.fillMissingEggs();
+							this.resetEggs();
 							this.remainingMoves = this.moves;
 							this.score = 0;
 							this.selection = [];
@@ -572,6 +560,35 @@
 								indigo: 0,
 								violet: 0
 							};
+
+							var possible = this.isPossibleToMove();
+
+							while(!possible)
+							{
+								alert("No more possible moves! Re-randomizing...")
+
+								this.resetEggs();
+
+								possible = this.isPossibleToMove();
+								console.log(possible);
+							}
+						},
+						resetEggs: function()
+						{
+							this.grid=[];
+							this.grid = [
+								[{style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}],
+								[{style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}],
+								[{style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}],
+								[{style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}],
+								[{style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}],
+								[{style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}],
+								[{style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}],
+								[{style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}],
+								[{style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}],
+								[{style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}]
+							];
+							//this.fillMissingEggs();
 						},
 						getMarginTop: function(color)
 						{
@@ -683,7 +700,7 @@
 						confirm: function()
 						{
 							this.remainingMoves--;
-							this.score += ((this.selection.length - 2) * this.pointsPerEgg);
+							//this.score += ((this.selection.length - 2) * this.pointsPerEgg);
 
 							var arr = this.grid;
 							this.paused = true;
@@ -695,7 +712,6 @@
 
 							this.grid = [];
 							this.grid = arr;
-							console.log(this.grid)
 
 							setTimeout(
 								()=> 
@@ -703,7 +719,10 @@
 									for (var i = 0; i < this.selection.length; i++) 
 									{
 										var color = arr[this.selection[i][0]][this.selection[i][1]].color;
-										this.rainbow[color] += (i > 1 ? (i - 1) * (i - 1) * 10 : 0);
+										var inc = (i > 1 ? (i - 1) * (i - 1) * this.pointsPerEgg : 0);
+										console.log(inc);
+										this.score += inc;
+										this.rainbow[color] += 10;
 										if (this.rainbow[color] >= this.max) this.rainbow[color] = this.max;
 
 										arr[this.selection[i][0]][this.selection[i][1]].style = "";
@@ -754,9 +773,18 @@
 							if (this.rainbow.red == this.max && this.rainbow.orange == this.max && this.rainbow.yellow == this.max && this.rainbow.green == this.max && this.rainbow.blue == this.max && this.rainbow.indigo == this.max && this.rainbow.violet == this.max) endGameScenario = true;
 
 							//check for usable moves
-							if (this.remainingMoves > 0)
+							if (this.remainingMoves > 0 && !endGameScenario)
 							{
+								var possible = this.isPossibleToMove();
 
+								while(!possible)
+								{
+									alert("No more possible moves! Re-randomizing...")
+
+									this.resetEggs();
+
+									possible = this.isPossibleToMove();
+								}
 							}
 
 							// end check
@@ -767,11 +795,62 @@
 							}
 
 							return endGameScenario;
+						},
+						isPossibleToMove: function()
+						{
+							var possible = false;
+							var arr = this.grid;
+
+							for (var i = 0; i < arr.length; i++) 
+							{
+								if (possible) break;
+
+								for (var j = 0; j < arr[i].length; j++) 
+								{
+									if (i > 0)
+									{
+										if (arr[i][j].color == arr[i - 1][j].color) 
+										{
+											possible = true;
+											break;
+										}
+									}
+
+									if (i < arr.length - 1)
+									{
+										if (arr[i][j].color = arr[i + 1][j].color) 
+										{
+											possible = true;
+											break;
+										}											
+									}
+
+									if (j > 0)
+									{
+										if (arr[i][j].color = arr[i][j - 1].color) 
+										{
+											possible = true;
+											break;
+										}		
+									}
+
+									if (j < arr[i].length - 1)
+									{
+										if (arr[i][j].color = arr[i][j + 1].color) 
+										{
+											possible = true;
+											break;
+										}	
+									}
+								}
+							}
+
+							return possible;
 						}
 					},
 					created: function()
 					{
-						this.reset();
+						//this.reset();
 					}					
 				}
 			);
