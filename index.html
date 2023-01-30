@@ -520,18 +520,7 @@
 						pointsPerEgg: 10,
 						pointsPerMove: 100,
 						score: 0,
-						grid: [
-							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
-							[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}]
-						],
+						grid: [],
 						selection: [],
 						rainbow: {
 							red: 0,
@@ -567,7 +556,7 @@
 							{
 								alert("No more possible moves! Re-randomizing...")
 
-								this.resetEggs();
+								//this.resetEggs();
 
 								possible = this.isPossibleToMove();
 								console.log(possible);
@@ -577,18 +566,19 @@
 						{
 							this.grid=[];
 							this.grid = [
-								[{style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}],
-								[{style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}],
-								[{style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}],
-								[{style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}],
-								[{style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}],
-								[{style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}],
-								[{style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}],
-								[{style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}],
-								[{style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}, {style: "style1", color: "red"}, {style: "style1", color: "yellow"}],
-								[{style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}, {style: "style1", color: "green"}, {style: "style1", color: "blue"}]
-							];
-							//this.fillMissingEggs();
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
+								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}]
+							],
+							
+							this.fillMissingEggs();
 						},
 						getMarginTop: function(color)
 						{
@@ -818,7 +808,7 @@
 
 									if (i < arr.length - 1)
 									{
-										if (arr[i][j].color = arr[i + 1][j].color) 
+										if (arr[i][j].color == arr[i + 1][j].color) 
 										{
 											possible = true;
 											break;
@@ -827,7 +817,7 @@
 
 									if (j > 0)
 									{
-										if (arr[i][j].color = arr[i][j - 1].color) 
+										if (arr[i][j].color == arr[i][j - 1].color) 
 										{
 											possible = true;
 											break;
@@ -836,7 +826,7 @@
 
 									if (j < arr[i].length - 1)
 									{
-										if (arr[i][j].color = arr[i][j + 1].color) 
+										if (arr[i][j].color == arr[i][j + 1].color) 
 										{
 											possible = true;
 											break;
