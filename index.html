@@ -778,12 +778,7 @@
 
 							if (endGameScenario)
 							{
-								while (this.remainingMoves > 0)
-								{
-									this.remainingMoves --;
-									this.score += 1000;
-								}
-
+								this.score += (this.remainingMoves * 1000);
 								this.score += " (GAME OVER)";
 							}
 
