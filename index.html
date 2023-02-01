@@ -514,7 +514,7 @@
 					{
 						started: false,
 						paused: false,
-						max: 100,
+						max: 50,
 						moves: 50,
 						remainingMoves: 50,
 						pointsPerEgg: 10,
@@ -583,7 +583,7 @@
 						getMarginTop: function(color)
 						{
 							var percentage = this.max - this.rainbow[color];
-							return "margin-top:" + ((percentage / 100) * 480) + "px";
+							return "margin-top:" + ((percentage / this.max) * 480) + "px";
 						},
 						getMiddleHeight: function(section)
 						{
@@ -762,7 +762,6 @@
 							if (this.remainingMoves == 0) endGameScenario = true;
 							if (this.rainbow.red == this.max && this.rainbow.orange == this.max && this.rainbow.yellow == this.max && this.rainbow.green == this.max && this.rainbow.blue == this.max && this.rainbow.indigo == this.max && this.rainbow.violet == this.max) endGameScenario = true;
 
-							//check for usable moves
 							if (this.remainingMoves > 0 && !endGameScenario)
 							{
 								var possible = this.isPossibleToMove();
@@ -777,11 +776,15 @@
 								}
 							}
 
-							// end check
-
 							if (endGameScenario)
 							{
-								///tabulate scores
+								while (this.remainingMoves > 0)
+								{
+									this.remainingMoves --;
+									this.score += 1000;
+								}
+
+								this.score += " (GAME OVER)";
 							}
 
 							return endGameScenario;
