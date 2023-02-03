@@ -500,6 +500,7 @@
 				<button v-on:click="confirm()" v-bind:style=getButtonVisibility("confirm")>CONFIRM</button>
 				<button v-on:click="setStarted(true)" v-bind:style=getButtonVisibility("start")>BEGIN</button>
 				<button v-on:click="setStarted(false)" v-bind:style=getButtonVisibility("stop")>STOP GAME</button>
+				<button v-on:click="setStarted(true)" v-bind:style=getButtonVisibility("restart")>REPLAY</button>
 			</div>
 		</div>
 
@@ -514,7 +515,7 @@
 					{
 						started: false,
 						paused: false,
-						max: 50,
+						max: 100,
 						moves: 50,
 						remainingMoves: 50,
 						pointsPerEgg: 10,
@@ -559,8 +560,9 @@
 								//this.resetEggs();
 
 								possible = this.isPossibleToMove();
-								console.log(possible);
 							}
+
+							this.paused = false;
 						},
 						resetEggs: function()
 						{
@@ -598,10 +600,11 @@
 						{
 							var vis = "none";
 
-							if (section == "stop" && this.started) vis = "block";
 							if (section == "start" && !this.started) vis = "block";
 							if (section == "confirm" && this.selection.length >= 2) vis = "block";
 							if (this.paused) vis = "none";
+							if (section == "stop" && this.started) vis = "block";
+							if (section == "restart" && this.started && this.remainingMoves == 0) vis = "block";
 
 							return "display:" + vis;
 						},
@@ -778,8 +781,22 @@
 
 							if (endGameScenario)
 							{
-								this.score += (this.remainingMoves * 1000);
-								this.score += " (GAME OVER)";
+								var scoreTimer = setInterval(
+									()=>
+									{
+										if (this.remainingMoves > 0) 
+										{
+											this.remainingMoves--;
+											this.score += 1000;
+										}
+										else
+										{
+											clearInterval(scoreTimer);
+											this.score += " (GAME OVER)";
+										}
+									},
+									100
+								);
 							}
 
 							return endGameScenario;
