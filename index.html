@@ -464,7 +464,7 @@
 				<div class="instructions">
 					<h1>Instructions</h1>
 					<p>Your objective is to form a full rainbow in as few moves as possible.</p>
-					<p>Select a line (2 or more) of similarly colored eggs and click CONFIRM. This counts as one move, and will fill up the aprpropriate color on the meter.</p>
+					<p>Select a line (2 or more) of similarly colored eggs and click CONFIRM. This counts as one move, and will fill up the appropriate color on the meter.</p>
 					<p>A line can be any combination of horizontal or vertical lines.</p>
 					<p>The game ends when you run out of moves, or when a full rainbow is formed.</p>
 					<p>Extra points are earned from lines greater than 2 eggs.</p>
@@ -551,16 +551,7 @@
 								violet: 0
 							};
 
-							var possible = this.isPossibleToMove();
-
-							while(!possible)
-							{
-								alert("No more possible moves! Re-randomizing...")
-
-								//this.resetEggs();
-
-								possible = this.isPossibleToMove();
-							}
+							this.handleimpossibleScenario();
 
 							this.paused = false;
 						},
@@ -581,6 +572,19 @@
 							],
 							
 							this.fillMissingEggs();
+						},
+						handleimpossibleScenario: function()
+						{
+							var possible = this.isPossibleToMove();
+
+							while(!possible)
+							{
+								alert("No more possible moves! Re-randomizing...")
+
+								this.resetEggs();
+
+								possible = this.isPossibleToMove();
+							}
 						},
 						getMarginTop: function(color)
 						{
@@ -621,20 +625,25 @@
 
 							return false;
 						},
-						isLinkable: function(c, s)
+						isLinkableAtPos: function(c, s)
 						{
-							if (this.selection.length == 0) return true;
+							if (this.selection.length == 0) return 1;
 
-							var locationCompatible = false;
+							var firstNodeLocationCompatible = false;
+							var lastNodeLocationCompatible = false;
 							var colorCompatible = false;
 
+							firstNode = this.selection[0];
 							lastNode = this.selection[this.selection.length - 1];
-							if (lastNode[0] == c || lastNode[1] == s) locationCompatible = true;
-							if (this.grid[lastNode[0]][lastNode[1]].color == this.grid[c][s].color) colorCompatible = true;
 
-							if (locationCompatible && colorCompatible) return true;
+							if (firstNode[0] == c || firstNode[1] == s) firstNodeLocationCompatible = true;
+							if (lastNode[0] == c || lastNode[1] == s) lastNodeLocationCompatible = true;
+							if (this.grid[firstNode[0]][firstNode[1]].color == this.grid[c][s].color) colorCompatible = true;
 
-							return false;
+							if (firstNodeLocationCompatible && colorCompatible) return 0;
+							if (lastNodeLocationCompatible && colorCompatible) return 1;
+
+							return null;
 						},
 						setStarted: function(started)
 						{
@@ -646,19 +655,23 @@
 						{
 							if (this.paused) return;
 
-							var insert = false;
 							var reset = false;
+							var insertPos = this.isLinkableAtPos(c, s);
 
-							if (!this.isInSelection(c, s) && this.isLinkable(c, s)) 
-							{
-								insert = true;
-							}
-							else
+							if (!this.isInSelection(c, s) && insertPos == null) 
 							{
 								reset = true;
 							}
 
-							if (insert) this.selection.push([c, s]);
+							if (insertPos == 0 && insertPos != null)
+							{
+								this.selection.unshift([c, s]);
+							} 
+							else
+							{
+								this.selection.push([c, s]);
+							}
+
 							if (reset) this.selection = [];
 					 	},
 						fillMissingEggs: function()
@@ -693,7 +706,6 @@
 						confirm: function()
 						{
 							this.remainingMoves--;
-							//this.score += ((this.selection.length - 2) * this.pointsPerEgg);
 
 							var arr = this.grid;
 							this.paused = true;
@@ -713,7 +725,6 @@
 									{
 										var color = arr[this.selection[i][0]][this.selection[i][1]].color;
 										var inc = (i > 1 ? (i - 1) * (i - 1) * this.pointsPerEgg : 0);
-										console.log(inc);
 										this.score += inc;
 										this.rainbow[color] += 10;
 										if (this.rainbow[color] >= this.max) this.rainbow[color] = this.max;
@@ -767,16 +778,7 @@
 
 							if (this.remainingMoves > 0 && !endGameScenario)
 							{
-								var possible = this.isPossibleToMove();
-
-								while(!possible)
-								{
-									alert("No more possible moves! Re-randomizing...")
-
-									this.resetEggs();
-
-									possible = this.isPossibleToMove();
-								}
+								this.handleimpossibleScenario();
 							}
 
 							if (endGameScenario)
