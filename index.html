@@ -649,7 +649,14 @@
 						{
 							this.started = started;
 
-							if (started) this.reset();
+							if (started) 
+							{
+								this.reset();
+							} 
+							else 
+							{
+								this.paused = false;
+							}
 						},
 						selectSquare: function(c, s) //TODO: Amend to allow front insertion
 						{
