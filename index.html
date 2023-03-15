@@ -452,11 +452,11 @@
 				<div class="statboard">
 					<b>Score</b>
 					<br />
-					<span class="score"> {{ score }} </span>
+					{{ score }} 
 					<br /><br />
 					<b>Moves Remaining</b>
 					<br />
-					<span class="moves">{{ remainingMoves }} / {{ moves }}</span>
+					{{ remainingMoves }} / {{ moves }}
 				</div>
 			</div>
 
@@ -472,7 +472,7 @@
 			</div>
 			
 			<div class="middle" v-bind:style=getMiddleHeight("game")>
-				<div class="grid">
+ 				<div class="grid">
 					<div class="col" v-for="(c, col) in grid">
 						<div class="square" v-for="(s, square) in col" v-on:click="selectSquare(c, s)">
 							<div v-bind:class="getEggClass(c, s)">
@@ -492,7 +492,7 @@
 					<div class="stripe outline_blue"><div class="stripe_fill blue" v-bind:style=getMarginTop("blue")></div></div>
 					<div class="stripe outline_indigo"><div class="stripe_fill indigo" v-bind:style=getMarginTop("indigo")></div></div>
 					<div class="stripe outline_violet"><div class="stripe_fill violet" v-bind:style=getMarginTop("violet")></div></div>
-				</div>
+				</div> 
 			</div>
 
 			<div class="bottom">
@@ -523,7 +523,8 @@
 						score: 0,
 						grid: [],
 						selection: [],
-						rainbow: {
+						rainbow: 
+						{
 							red: 0,
 							orange: 0,
 							yellow: 0,
@@ -558,6 +559,7 @@
 						resetEggs: function()
 						{
 							this.grid=[];
+
 							this.grid = [
 								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
 								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
@@ -569,7 +571,7 @@
 								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
 								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}],
 								[{style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}, {style: "", color: ""}]
-							],
+							];
 							
 							this.fillMissingEggs();
 						},
@@ -633,11 +635,11 @@
 							var lastNodeLocationCompatible = false;
 							var colorCompatible = false;
 
-							firstNode = this.selection[0];
-							lastNode = this.selection[this.selection.length - 1];
+							var firstNode = this.selection[0];
+							var lastNode = this.selection[this.selection.length - 1];
 
-							if (firstNode[0] == c || firstNode[1] == s) firstNodeLocationCompatible = true;
-							if (lastNode[0] == c || lastNode[1] == s) lastNodeLocationCompatible = true;
+							if ((firstNode[0] == c && Math.abs(firstNode[1] - s) == 1) || (firstNode[1] == s && Math.abs(firstNode[0] - c) == 1)) firstNodeLocationCompatible = true;
+							if ((lastNode[0] == c && Math.abs(lastNode[1] - s) == 1) || (lastNode[1] == s && Math.abs(lastNode[0] - c) == 1)) lastNodeLocationCompatible = true;
 							if (this.grid[firstNode[0]][firstNode[1]].color == this.grid[c][s].color) colorCompatible = true;
 
 							if (firstNodeLocationCompatible && colorCompatible) return 0;
@@ -783,10 +785,6 @@
 							if (this.remainingMoves == 0) endGameScenario = true;
 							if (this.rainbow.red == this.max && this.rainbow.orange == this.max && this.rainbow.yellow == this.max && this.rainbow.green == this.max && this.rainbow.blue == this.max && this.rainbow.indigo == this.max && this.rainbow.violet == this.max) endGameScenario = true;
 
-							if (this.remainingMoves > 0 && !endGameScenario)
-							{
-								this.handleimpossibleScenario();
-							}
 
 							if (endGameScenario)
 							{
@@ -796,7 +794,7 @@
 										if (this.remainingMoves > 0) 
 										{
 											this.remainingMoves--;
-											this.score += 1000;
+											this.score += this.pointsPerMove;
 										}
 										else
 										{
@@ -806,6 +804,10 @@
 									},
 									100
 								);
+							}
+							else
+							{
+								this.handleimpossibleScenario();
 							}
 
 							return endGameScenario;
@@ -864,7 +866,7 @@
 					},
 					created: function()
 					{
-						//this.reset();
+						this.reset();
 					}					
 				}
 			);
