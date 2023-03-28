@@ -14,6 +14,10 @@ This utilizes a number of placeholders for data display.
 - buttons at the footer for gameplay.
 
 ## CSS (TBA)
+### Layout
+### Gameplay
+- Eggs: Styled using `egg` AND `style1` or `style2` or `style3` AND a color. The `after` pseudoselector provides a 3D effect.
+- Rainbow Stripes: Outer container is styled using `stripe` and a class derived from "outline_" and a color. Inner fill is another div styled using a color.
 
 ## JavaScript (TBA)
 ### Data
