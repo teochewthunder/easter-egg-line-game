@@ -21,4 +21,17 @@ Only covering the stuff that's related to gameplay.
 
 ## JavaScript (TBA)
 ### Data
+- `started`: ABoolean that determines if a game is in progress. It is set to `false` on a button click or when an end-game scenario is achieved. It is also used to show or hide some buttons.
+- `paused`: A Boolean that pauses the game, disabling certain methods from running and some buttons from being displayed.
+- `max`: An integer that is set at 100. It determines the maximum number of "points" required to fill each rainbow stripe.
+- `moves`: An integer which determines the number of moves the player starts with.
+- `remainingMoves`: A value that starts out the same as `moves`, but gets decremented with each move. Once it reaches 0, an end-game scenario is achieved. It also determines the `score` after the game is over.
+- `pointsPerEgg`: A value that adds to the `score` depending on how many long an egg line is.
+- `score`: The number of points accumulated. It starts at 0, gets incremented during the gam and at the end.
+- grid: An array that the grid is bound to. It is supposed to be a 10 x 10 two-dimensional array. The second dimension contains an object.
+   - `style`: "style1", "style1" or "style3".
+   - `color`: "red, "orange", "yellow", "green", "blue", "indigo" or "violet".
+- `selection`: An array that contains arrays pointing to the first and second dimension of `grid`.
+- `rainbow`: An object that contains seven properties, all named after the colors of a rainbow. All these properties start at 0 and end at `max`.
+
 ### Methods
