@@ -35,3 +35,6 @@ Only covering the stuff that's related to gameplay.
 - `rainbow`: An object that contains seven properties, all named after the colors of a rainbow. All these properties start at 0 and end at `max`.
 
 ### Methods
+- `reset()`: This is run whenever a game is started (or restarted). The grid is reset using `resetEggs()`, data is reset to default values and `handleImpossibleScenario()` is called just to ensure that the game is playable.
+- `resetEggs()`: This clears the entire grid of values, then calls `fillMissingEggs()` to populate the grid.
+- `handleImpossibleScenario()`: This runs `isPossibleToMove()` and prmpes a warning message every time it is `false`, until the method returns `true`.
