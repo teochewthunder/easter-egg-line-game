@@ -38,3 +38,13 @@ Only covering the stuff that's related to gameplay.
 - `reset()`: This is run whenever a game is started (or restarted). The grid is reset using `resetEggs()`, data is reset to default values and `handleImpossibleScenario()` is called just to ensure that the game is playable.
 - `resetEggs()`: This clears the entire grid of values, then calls `fillMissingEggs()` to populate the grid.
 - `handleImpossibleScenario()`: This runs `isPossibleToMove()` and prmpes a warning message every time it is `false`, until the method returns `true`.
+- `getMarginTop()`: This has a parameter, `top`. It uses `top` and the `max` property to determine the `margin-top` property of the div inside each "stripe", thus visually simulating some kind of "meter" effect. 
+- `getMiddleHeight()`: This has a parameter, 'section`. This just helps to show either the instructions panel or the grid. Due to the `transition` property beng already set in the CSS, this will manifest as an animation.
+- `getButtonVisibility()`: This has a parameter, 'section`. Not the best name, but this is simple functionality, anyway. The `display` property is set to either `block` or `none` depending on the values of `section` and the properties `started` and `paused`.
+- `getEggClass()`: It has parameters `c` and `s`, and uses these values to point to the `grid` array's `style` and `color` properties to set the element's `class` attribute. It also checks if the combination of `c` and `s` appear in the `selection` array (using the `isInSelection()` method) and adds the `outline` class if so.
+- `isInSelection()`: It has parameters `c` and `s`, and checks if the combination of `c` and `s` appear in the `selection` array. Returns a Boolean.
+- `()`:
+- `()`:
+- `()`:
+- `()`:
+- `()`:
